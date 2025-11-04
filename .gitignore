@@ -56,5 +56,8 @@ next-env.d.ts
 .history
 .ionide
 
+# .env
+.env
+
 # End of https://www.toptal.com/developers/gitignore/api/VisualStudioCode
 n
