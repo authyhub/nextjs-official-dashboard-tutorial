@@ -1,7 +1,9 @@
 'use server'
 
 import postgres from 'postgres'
+import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
+import { redirect } from 'next/navigation'
 
 const sql = postgres(process.env.POSTGRES_URL!, {
   ssl: 'require',
@@ -30,4 +32,7 @@ export async function createInvoice(formData: FormData) {
     INSERT INTO invoices (customer_id, amount, status, date) 
     VALUES (${customerId},${amountInCents},${status},${date})
     `
+  revalidatePath('/dashboard/invoices')
+  // Once the database has been updated, the /dashboard/invoices path will be revalidated, and fresh data will be fetched from the server.
+  redirect('/dashboard/invoices')
 }
