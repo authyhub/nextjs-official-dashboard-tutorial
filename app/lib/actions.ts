@@ -36,3 +36,5 @@ export async function createInvoice(formData: FormData) {
   // Once the database has been updated, the /dashboard/invoices path will be revalidated, and fresh data will be fetched from the server.
   redirect('/dashboard/invoices')
 }
+
+export async function updateInvoice(formData: FormData) {}
