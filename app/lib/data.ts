@@ -119,7 +119,7 @@ export async function fetchInvoicesPages(query: string) {
       invoices.date::text ILIKE ${`%${query}%`} OR
       invoices.status ILIKE ${`%${query}%`}
   `
-
+    console.dir({ data })
     const totalPages = Math.ceil(Number(data[0].count) / ITEMS_PER_PAGE)
     return totalPages
   } catch (error) {
