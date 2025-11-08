@@ -24,7 +24,7 @@ export async function createInvoice(formData: FormData) {
     status: formData.get('status'),
   })
   const amountInCents = amount * 100
-  console.dir({ customerId, amountInCents, status })
+//   console.dir({ customerId, amountInCents, status })
 
   const date = new Date().toISOString().split('T')[0]
 
@@ -77,7 +77,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 
 export async function deleteInvoice(id: string) {
   throw new Error('Failed to Delete Invoice')
-  console.log(id)
+//   console.log(id)
 
   await sql`
     DELETE FROM invoices
