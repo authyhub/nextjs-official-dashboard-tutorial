@@ -28,10 +28,17 @@ export async function createInvoice(formData: FormData) {
 
   const date = new Date().toISOString().split('T')[0]
 
-  await sql`
+  try {
+    await sql`
     INSERT INTO invoices (customer_id, amount, status, date) 
     VALUES (${customerId},${amountInCents},${status},${date})
     `
+  } catch (error) {
+    console.error(error)
+    return {
+      message: 'Database error: Failed to create invoice.',
+    }
+  }
   revalidatePath('/dashboard/invoices')
   // Once the database has been updated, the /dashboard/invoices path will be revalidated, and fresh data will be fetched from the server.
   redirect('/dashboard/invoices')
