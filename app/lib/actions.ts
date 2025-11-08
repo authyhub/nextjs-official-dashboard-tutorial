@@ -76,6 +76,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 // Delete Invoice
 
 export async function deleteInvoice(id: string) {
+  throw new Error('Failed to Delete Invoice')
   console.log(id)
 
   await sql`
